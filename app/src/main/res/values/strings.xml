@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">FlagQuiz demo</string>
+    <string name="text_score">Score</string>
+    <string name="_1">- 1 -</string>
+    <string name="text_answer">Answer</string>
+    <string name="text_error">Error</string>
+    <string name="text_lost_score">You lost 1 score</string>
+    <string name="text_got_score">You got 1 score</string>
+    <string name="text_successful">Successful</string>
+    <string name="_10">10</string>
+    <string name="text_level">level</string>
+
+    <string name="text_score_ru">Очко</string>
+    <string name="text_answer_ru">Ответ</string>
+    <string name="text_error_ru">Ошибка</string>
+    <string name="text_lost_score_ru">Вы потеряли 1 очко</string>
+    <string name="text_got_score_ru">Ура! У вас ещё 1 очко</string>
+    <string name="text_successful_ru">Успешно</string>
+    <string name="text_level_ru">уровень</string>
+
+    <string name="text_score_uz">Bal:</string>
+    <string name="text_answer_uz">Javob</string>
+    <string name="text_error_uz">Xato</string>
+    <string name="text_lost_score_uz">1 bal yo\'qotdingiz</string>
+    <string name="text_got_score_uz">1 balga ega bo\'ldingiz</string>
+    <string name="text_successful_uz">Muvaffaqiyatlik</string>
+    <string name="text_level_uz">bosqich</string>
+    <string name="text_language">English</string>
+</resources>
