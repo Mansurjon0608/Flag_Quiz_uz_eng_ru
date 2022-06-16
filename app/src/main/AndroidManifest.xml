@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flagquizedemo">
+    package="com.mstar004.flagquizedemo">
 
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FlagQuizeDemo">
         <activity
-            android:name=".UzbekActivity"
+            android:name="com.mstar004.flagquizedemo.UzbekActivity"
             android:exported="false" />
         <activity
-            android:name=".RussianActivity"
+            android:name="com.mstar004.flagquizedemo.RussianActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.mstar004.flagquizedemo.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

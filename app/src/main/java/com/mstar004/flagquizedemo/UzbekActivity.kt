@@ -1,4 +1,4 @@
-package com.example.flagquizedemo
+package com.mstar004.flagquizedemo
 
 import Models.Flag
 import android.annotation.SuppressLint
@@ -12,17 +12,20 @@ import android.os.*
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.Window
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.view.children
-import com.example.flagquizedemo.databinding.ActivityMainBinding
+import com.mstar004.flagquizedemo.databinding.ActivityUzbekBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
 @Suppress("DEPRECATION")
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class UzbekActivity : AppCompatActivity(), View.OnClickListener {
 
-    lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityUzbekBinding
     lateinit var flagArrayList: ArrayList<Flag>
     var count = 0
     var score = 0
@@ -41,6 +44,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
     @SuppressLint("SetTextI18n")
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window?.statusBarColor = Color.TRANSPARENT
@@ -49,7 +54,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         }
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityUzbekBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         supportActionBar?.hide()
@@ -65,12 +70,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             dialog?.show()
 
             dialog?.findViewById<CardView>(R.id.btn_uzbekLanguage)?.setOnClickListener {
-                startActivity(Intent(this, UzbekActivity::class.java))
-                Toast.makeText(this, "O'zbek tili tanlandi", Toast.LENGTH_SHORT).show()
+                dialog?.dismiss()
             }
 
             dialog?.findViewById<CardView>(R.id.btn_english)?.setOnClickListener {
-                dialog?.dismiss()
+                startActivity(Intent(this, UzbekActivity::class.java))
+                Toast.makeText(this, "English is selected", Toast.LENGTH_SHORT).show()
             }
 
             dialog?.findViewById<CardView>(R.id.btn_russian)?.setOnClickListener {
@@ -94,7 +99,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 binding.tvAnswer.visibility = View.GONE
             } else binding.tvAnswer.visibility = View.VISIBLE
             binding.btnShowAnswer.isEnabled = false
-            binding.tvScore.text = getString(R.string.text_score) + " : $score"
+            binding.tvScore.text = getString(R.string.text_score_uz) + ": $score"
         }
     }
 
@@ -115,7 +120,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 count++
             }
             Toast.makeText(this,
-                "${count + 1} - ${getString(R.string.text_level)}",
+                "${count + 1} - ${getString(R.string.text_level_uz)}",
                 Toast.LENGTH_SHORT).show()
             btnJoylaCount()
             score--
@@ -128,127 +133,121 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     @SuppressLint("SetTextI18n")
     private fun createObject() {
 
-        binding.tvScore.text = getString(R.string.text_score) + " : $score"
+        binding.tvScore.text = getString(R.string.text_score_uz) + " : $score"
         binding.tvStep.text = "- ${count + 1} -"
 
         flagArrayList = ArrayList()
-        flagArrayList.add(Flag("russia", R.drawable.russia))
-        flagArrayList.add(Flag("afghanistan", R.drawable.afgani))
-        flagArrayList.add(Flag("albania", R.drawable.albani))
-        flagArrayList.add(Flag("algeria", R.drawable.aljir))
+        flagArrayList.add(Flag("rossiya", R.drawable.russia))
+        flagArrayList.add(Flag("afğoniston", R.drawable.afgani))
+        flagArrayList.add(Flag("albaniya", R.drawable.albani))
         flagArrayList.add(Flag("andorra", R.drawable.andorra))
         flagArrayList.add(Flag("argentina", R.drawable.argentina))
-        flagArrayList.add(Flag("armenia", R.drawable.armenia))
-        flagArrayList.add(Flag("australia", R.drawable.australia))
-        flagArrayList.add(Flag("austria", R.drawable.austria))
-        flagArrayList.add(Flag("azerbaijan", R.drawable.azarbeijan))
+        flagArrayList.add(Flag("armeniya", R.drawable.armenia))
+        flagArrayList.add(Flag("avstraliya", R.drawable.australia))
+        flagArrayList.add(Flag("avstriya", R.drawable.austria))
+        flagArrayList.add(Flag("azarbayjon", R.drawable.azarbeijan))
         flagArrayList.add(Flag("bahamas", R.drawable.bahamas))
-        flagArrayList.add(Flag("bahrain", R.drawable.bayreyn))
+        flagArrayList.add(Flag("baxrayn", R.drawable.bayreyn))
         flagArrayList.add(Flag("bangladesh", R.drawable.bangladesh))
         flagArrayList.add(Flag("barbados", R.drawable.barbados))
-        flagArrayList.add(Flag("belarus", R.drawable.belarus))
-        flagArrayList.add(Flag("belgium", R.drawable.belgium))
-        flagArrayList.add(Flag("belize", R.drawable.belize))
+        flagArrayList.add(Flag("belarusiya", R.drawable.belarus))
+        flagArrayList.add(Flag("belgiya", R.drawable.belgium))
+        flagArrayList.add(Flag("beliz", R.drawable.belize))
         flagArrayList.add(Flag("benin", R.drawable.benin))
-        flagArrayList.add(Flag("bhutan", R.drawable.bhutan))
-        flagArrayList.add(Flag("bolivia", R.drawable.bolivia))
-        flagArrayList.add(Flag("bosnia", R.drawable.bosnia))
-        flagArrayList.add(Flag("botswana", R.drawable.botswana))
-        flagArrayList.add(Flag("brazil", R.drawable.brasil))
-        flagArrayList.add(Flag("brunei", R.drawable.brunei))
-        flagArrayList.add(Flag("bulgaria", R.drawable.bulgaria))
+        flagArrayList.add(Flag("butan", R.drawable.bhutan))
+        flagArrayList.add(Flag("boliviya", R.drawable.bolivia))
+        flagArrayList.add(Flag("bosniya", R.drawable.bosnia))
+        flagArrayList.add(Flag("botsvana", R.drawable.botswana))
+        flagArrayList.add(Flag("braziliyz", R.drawable.brasil))
+        flagArrayList.add(Flag("bruney", R.drawable.brunei))
+        flagArrayList.add(Flag("balgariya", R.drawable.bulgaria))
         flagArrayList.add(Flag("burkina-faso", R.drawable.burkina))
-        flagArrayList.add(Flag("burundi", R.drawable.burundu))
-        flagArrayList.add(Flag("cambodia", R.drawable.combodja))
-        flagArrayList.add(Flag("cameroon", R.drawable.cameron))
-        flagArrayList.add(Flag("canada", R.drawable.canada))
+        flagArrayList.add(Flag("burundu", R.drawable.burundu))
+        flagArrayList.add(Flag("jazoir", R.drawable.aljir))
+        flagArrayList.add(Flag("kambodja", R.drawable.combodja))
+        flagArrayList.add(Flag("kamerun", R.drawable.cameron))
+        flagArrayList.add(Flag("kanada", R.drawable.canada))
         flagArrayList.add(Flag("chad", R.drawable.chad))
         flagArrayList.add(Flag("chili", R.drawable.chili))
-        flagArrayList.add(Flag("chine", R.drawable.chine))
-        flagArrayList.add(Flag("colombia", R.drawable.colombia))
-        flagArrayList.add(Flag("cambodia", R.drawable.combodja))
-        flagArrayList.add(Flag("comoros", R.drawable.comoros))
-        flagArrayList.add(Flag("congo", R.drawable.congo))
-        flagArrayList.add(Flag("costa-rica", R.drawable.costarica))
-        flagArrayList.add(Flag("croatia", R.drawable.croatia))
-        flagArrayList.add(Flag("cuba", R.drawable.cuba))
-        flagArrayList.add(Flag("cyprus", R.drawable.cyprus))
-        flagArrayList.add(Flag("denmark", R.drawable.denmark))
-        flagArrayList.add(Flag("djibouti", R.drawable.djibouti))
-        flagArrayList.add(Flag("dominica", R.drawable.dominica))
-        flagArrayList.add(Flag("dominican", R.drawable.dominican))
-        flagArrayList.add(Flag("ecuador", R.drawable.ecuador))
-        flagArrayList.add(Flag("egypt", R.drawable.egypt))
-        flagArrayList.add(Flag("eritrea", R.drawable.eritrea))
-        flagArrayList.add(Flag("estonia", R.drawable.estonia))
-        flagArrayList.add(Flag("eswatini", R.drawable.eswatini))
-        flagArrayList.add(Flag("ethiopia", R.drawable.ethiopia))
+        flagArrayList.add(Flag("xitoy", R.drawable.chine))
+        flagArrayList.add(Flag("kolumbiya", R.drawable.colombia))
+        flagArrayList.add(Flag("komoros", R.drawable.comoros))
+        flagArrayList.add(Flag("kongo", R.drawable.congo))
+        flagArrayList.add(Flag("kosta-rika", R.drawable.costarica))
+        flagArrayList.add(Flag("xorvatiya", R.drawable.croatia))
+        flagArrayList.add(Flag("kuba", R.drawable.cuba))
+        flagArrayList.add(Flag("kipr", R.drawable.cyprus))
+        flagArrayList.add(Flag("daniya", R.drawable.denmark))
+        flagArrayList.add(Flag("jibuti", R.drawable.djibouti))
+        flagArrayList.add(Flag("dominika", R.drawable.dominica))
+        flagArrayList.add(Flag("dominikan", R.drawable.dominican))
+        flagArrayList.add(Flag("ekvador", R.drawable.ecuador))
+        flagArrayList.add(Flag("misr", R.drawable.egypt))
+        flagArrayList.add(Flag("eritreya", R.drawable.eritrea))
+        flagArrayList.add(Flag("estoniya", R.drawable.estonia))
+        flagArrayList.add(Flag("esvatini", R.drawable.eswatini))
+        flagArrayList.add(Flag("efiopiya", R.drawable.ethiopia))
         flagArrayList.add(Flag("fiji", R.drawable.fiji))
-        flagArrayList.add(Flag("finland", R.drawable.finland))
-        flagArrayList.add(Flag("france", R.drawable.france))
+        flagArrayList.add(Flag("finlandiya", R.drawable.finland))
+        flagArrayList.add(Flag("fransiya", R.drawable.france))
         flagArrayList.add(Flag("gabon", R.drawable.gabon))
-        flagArrayList.add(Flag("gambia", R.drawable.gambia))
-        flagArrayList.add(Flag("georgia", R.drawable.georgia))
-        flagArrayList.add(Flag("germany", R.drawable.germany))
-        flagArrayList.add(Flag("ghana", R.drawable.ghana))
-        flagArrayList.add(Flag("greece", R.drawable.greece))
+        flagArrayList.add(Flag("gambiya", R.drawable.gambia))
+        flagArrayList.add(Flag("gruziya", R.drawable.georgia))
+        flagArrayList.add(Flag("germaniya", R.drawable.germany))
+        flagArrayList.add(Flag("gana", R.drawable.ghana))
+        flagArrayList.add(Flag("gretsiya", R.drawable.greece))
         flagArrayList.add(Flag("grenada", R.drawable.grenada))
-        flagArrayList.add(Flag("guatemala", R.drawable.guatemala))
-        flagArrayList.add(Flag("guinea", R.drawable.guinea))
-        flagArrayList.add(Flag("guyana", R.drawable.guyana))
-        flagArrayList.add(Flag("haiti", R.drawable.haiti))
-        flagArrayList.add(Flag("holy-sea", R.drawable.hollysea))
-        flagArrayList.add(Flag("honduras", R.drawable.honduras))
-        flagArrayList.add(Flag("hungary", R.drawable.hungary))
-        flagArrayList.add(Flag("iceland", R.drawable.iceland))
-        flagArrayList.add(Flag("india", R.drawable.india))
-        flagArrayList.add(Flag("indonesia", R.drawable.indonesia))
-        flagArrayList.add(Flag("iran", R.drawable.iran))
-        flagArrayList.add(Flag("iraq", R.drawable.iraq))
-        flagArrayList.add(Flag("ireland", R.drawable.ireland))
-        flagArrayList.add(Flag("italy", R.drawable.italy))
-        flagArrayList.add(Flag("jamaica", R.drawable.jamaica))
-        flagArrayList.add(Flag("japan", R.drawable.japan))
-        flagArrayList.add(Flag("jordan", R.drawable.jordan))
-        flagArrayList.add(Flag("kenya", R.drawable.kenya))
-        flagArrayList.add(Flag("kiribati", R.drawable.kiribati))
-        flagArrayList.add(Flag("kuwait", R.drawable.kuwait))
+        flagArrayList.add(Flag("gvatemala", R.drawable.guatemala))
+        flagArrayList.add(Flag("gvineya", R.drawable.guinea))
+        flagArrayList.add(Flag("gavana", R.drawable.guyana))
+        flagArrayList.add(Flag("gaiti", R.drawable.haiti))
+        flagArrayList.add(Flag("gonduras", R.drawable.honduras))
+        flagArrayList.add(Flag("vengriya", R.drawable.hungary))
+        flagArrayList.add(Flag("islandiya", R.drawable.iceland))
+        flagArrayList.add(Flag("hindiston", R.drawable.india))
+        flagArrayList.add(Flag("indonesiya", R.drawable.indonesia))
+        flagArrayList.add(Flag("eran", R.drawable.iran))
+        flagArrayList.add(Flag("iroq", R.drawable.iraq))
+        flagArrayList.add(Flag("irlandiya", R.drawable.ireland))
+        flagArrayList.add(Flag("italiya", R.drawable.italy))
+        flagArrayList.add(Flag("yamayka", R.drawable.jamaica))
+        flagArrayList.add(Flag("yaponiya", R.drawable.japan))
+        flagArrayList.add(Flag("iordaniya", R.drawable.jordan))
+        flagArrayList.add(Flag("keniya", R.drawable.kenya))
+        flagArrayList.add(Flag("kiribat", R.drawable.kiribati))
+        flagArrayList.add(Flag("quvayt", R.drawable.kuwait))
         flagArrayList.add(Flag("laos", R.drawable.laos))
-        flagArrayList.add(Flag("latvia", R.drawable.latvia))
-        flagArrayList.add(Flag("lebanon", R.drawable.lebanon))
-        flagArrayList.add(Flag("lesotho", R.drawable.lesotho))
-        flagArrayList.add(Flag("liberia", R.drawable.liberia))
-        flagArrayList.add(Flag("libya", R.drawable.libya))
-        flagArrayList.add(Flag("liechtenstein", R.drawable.liechtenstein))
-        flagArrayList.add(Flag("lithuania", R.drawable.lithuania))
-        flagArrayList.add(Flag("luxembourg", R.drawable.luxembourg))
-        flagArrayList.add(Flag("madagascar", R.drawable.madagascar))
-        flagArrayList.add(Flag("malawi", R.drawable.malawi))
-        flagArrayList.add(Flag("malaysia", R.drawable.malaysia))
-        flagArrayList.add(Flag("maldives", R.drawable.maldives))
+        flagArrayList.add(Flag("latviya", R.drawable.latvia))
+        flagArrayList.add(Flag("livan", R.drawable.lebanon))
+        flagArrayList.add(Flag("lesoto", R.drawable.lesotho))
+        flagArrayList.add(Flag("liberiya", R.drawable.liberia))
+        flagArrayList.add(Flag("liviya", R.drawable.libya))
+        flagArrayList.add(Flag("lixtenshteyn", R.drawable.liechtenstein))
+        flagArrayList.add(Flag("litva", R.drawable.lithuania))
+        flagArrayList.add(Flag("luksemburg", R.drawable.luxembourg))
+        flagArrayList.add(Flag("madagaskar", R.drawable.madagascar))
+        flagArrayList.add(Flag("malavi", R.drawable.malawi))
+        flagArrayList.add(Flag("malaysiya", R.drawable.malaysia))
+        flagArrayList.add(Flag("maldiv", R.drawable.maldives))
         flagArrayList.add(Flag("mali", R.drawable.mali))
         flagArrayList.add(Flag("malta", R.drawable.malta))
-        flagArrayList.add(Flag("mauritania", R.drawable.mauritania))
-        flagArrayList.add(Flag("mauritius", R.drawable.mauritius))
-        flagArrayList.add(Flag("mexico", R.drawable.mexico))
-        flagArrayList.add(Flag("micronesia", R.drawable.micronesia))
+        flagArrayList.add(Flag("mavritaniya", R.drawable.mauritania))
+        flagArrayList.add(Flag("meksika", R.drawable.mexico))
+        flagArrayList.add(Flag("mikroneziya", R.drawable.micronesia))
         flagArrayList.add(Flag("moldova", R.drawable.moldova))
-        flagArrayList.add(Flag("monaco", R.drawable.monaco))
-        flagArrayList.add(Flag("mongolia", R.drawable.mongolia))
+        flagArrayList.add(Flag("monako", R.drawable.monaco))
+        flagArrayList.add(Flag("muğuliston", R.drawable.mongolia))
         flagArrayList.add(Flag("montenegro", R.drawable.montenegro))
-        flagArrayList.add(Flag("morocco", R.drawable.morocco))
-        flagArrayList.add(Flag("mozambique", R.drawable.mozambique))
+        flagArrayList.add(Flag("marokash", R.drawable.morocco))
+        flagArrayList.add(Flag("mozambik", R.drawable.mozambique))
 
-
-
-        flagArrayList.add(Flag("north-korea", R.drawable.northkorea))
+        flagArrayList.add(Flag("shimoliy-koreya", R.drawable.northkorea))
         flagArrayList.add(Flag("salvador", R.drawable.salvador))
 
-
-        flagArrayList.add(Flag("palestine", R.drawable.falastin))
-        flagArrayList.add(Flag("uzbekistan", R.drawable.uzbekistan))
-        flagArrayList.add(Flag("kyrgyzstan", R.drawable.kyrgyzstan))
-        flagArrayList.add(Flag("kazakhstan", R.drawable.kazaghstan))
+        flagArrayList.add(Flag("falastin", R.drawable.falastin))
+        flagArrayList.add(Flag("özbekiston", R.drawable.uzbekistan))
+        flagArrayList.add(Flag("qirğiziston", R.drawable.kyrgyzstan))
+        flagArrayList.add(Flag("qozoğiston", R.drawable.kazaghstan))
 
     }
 
@@ -348,8 +347,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     @SuppressLint("SetTextI18n")
     private fun rightAnswer() {
         if (countryName == flagArrayList[count].name?.toUpperCase(Locale.ROOT)) {
-            Toast.makeText(this, getString(R.string.text_successful), Toast.LENGTH_SHORT).show()
-            Toast.makeText(this, getString(R.string.text_got_score), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.text_successful_uz), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.text_got_score_uz), Toast.LENGTH_SHORT).show()
             score++
             binding.winnerAnim.visibility = View.VISIBLE
             binding.winnerAnim.playAnimation()
@@ -357,7 +356,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             handler.postDelayed({
                 binding.winnerAnim.visibility = View.GONE
                 btnJoylaCount()
-                binding.tvScore.text = getString(R.string.text_score) + " : $score"
+                binding.tvScore.text = getString(R.string.text_score_uz) + " : $score"
                 nextButton()
             }, 3000)
 
@@ -371,8 +370,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             binding.seekBar.progress = count
         } else {
             if (countryName.length == flagArrayList[count].name?.length) {
-                Toast.makeText(this, getString(R.string.text_error), Toast.LENGTH_SHORT).show()
-                Toast.makeText(this, getString(R.string.text_lost_score), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.text_error_uz), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.text_lost_score_uz), Toast.LENGTH_SHORT)
+                    .show()
                 vibrate()
                 failMusic()
                 linerMatn.removeAllViews()
@@ -409,7 +409,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             score--
         } else score = 0
 
-        binding.tvScore.text = getString(R.string.text_score) + " : $score"
+        binding.tvScore.text = getString(R.string.text_score_uz) + ": $score"
     }
 
     private fun getMusic() {

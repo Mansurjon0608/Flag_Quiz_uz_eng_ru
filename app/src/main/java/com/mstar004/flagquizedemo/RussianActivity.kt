@@ -1,4 +1,4 @@
-package com.example.flagquizedemo
+package com.mstar004.flagquizedemo
 
 import Models.Flag
 import android.annotation.SuppressLint
@@ -18,7 +18,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.view.children
-import com.example.flagquizedemo.databinding.ActivityRussianBinding
+import com.mstar004.flagquizedemo.databinding.ActivityRussianBinding
 import java.util.*
 import kotlin.collections.ArrayList
 

@@ -1,4 +1,4 @@
-package com.example.flagquizedemo
+package com.mstar004.flagquizedemo
 
 import Models.Flag
 import android.annotation.SuppressLint
@@ -12,20 +12,17 @@ import android.os.*
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.Window
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.core.view.children
-import com.example.flagquizedemo.databinding.ActivityUzbekBinding
+import com.mstar004.flagquizedemo.databinding.ActivityMainBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
 @Suppress("DEPRECATION")
-class UzbekActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    lateinit var binding: ActivityUzbekBinding
+    lateinit var binding: ActivityMainBinding
     lateinit var flagArrayList: ArrayList<Flag>
     var count = 0
     var score = 0
@@ -44,8 +41,6 @@ class UzbekActivity : AppCompatActivity(), View.OnClickListener {
 
 
     @SuppressLint("SetTextI18n")
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window?.statusBarColor = Color.TRANSPARENT
@@ -54,7 +49,7 @@ class UzbekActivity : AppCompatActivity(), View.OnClickListener {
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         }
 
-        binding = ActivityUzbekBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         supportActionBar?.hide()
@@ -70,12 +65,12 @@ class UzbekActivity : AppCompatActivity(), View.OnClickListener {
             dialog?.show()
 
             dialog?.findViewById<CardView>(R.id.btn_uzbekLanguage)?.setOnClickListener {
-                dialog?.dismiss()
+                startActivity(Intent(this, UzbekActivity::class.java))
+                Toast.makeText(this, "O'zbek tili tanlandi", Toast.LENGTH_SHORT).show()
             }
 
             dialog?.findViewById<CardView>(R.id.btn_english)?.setOnClickListener {
-                startActivity(Intent(this, UzbekActivity::class.java))
-                Toast.makeText(this, "English is selected", Toast.LENGTH_SHORT).show()
+                dialog?.dismiss()
             }
 
             dialog?.findViewById<CardView>(R.id.btn_russian)?.setOnClickListener {
@@ -99,7 +94,7 @@ class UzbekActivity : AppCompatActivity(), View.OnClickListener {
                 binding.tvAnswer.visibility = View.GONE
             } else binding.tvAnswer.visibility = View.VISIBLE
             binding.btnShowAnswer.isEnabled = false
-            binding.tvScore.text = getString(R.string.text_score_uz) + ": $score"
+            binding.tvScore.text = getString(R.string.text_score) + " : $score"
         }
     }
 
@@ -120,7 +115,7 @@ class UzbekActivity : AppCompatActivity(), View.OnClickListener {
                 count++
             }
             Toast.makeText(this,
-                "${count + 1} - ${getString(R.string.text_level_uz)}",
+                "${count + 1} - ${getString(R.string.text_level)}",
                 Toast.LENGTH_SHORT).show()
             btnJoylaCount()
             score--
@@ -133,7 +128,7 @@ class UzbekActivity : AppCompatActivity(), View.OnClickListener {
     @SuppressLint("SetTextI18n")
     private fun createObject() {
 
-        binding.tvScore.text = "${R.string.text_score_uz} : $score"
+        binding.tvScore.text = getString(R.string.text_score) + " : $score"
         binding.tvStep.text = "- ${count + 1} -"
 
         flagArrayList = ArrayList()
@@ -244,8 +239,11 @@ class UzbekActivity : AppCompatActivity(), View.OnClickListener {
         flagArrayList.add(Flag("morocco", R.drawable.morocco))
         flagArrayList.add(Flag("mozambique", R.drawable.mozambique))
 
+
+
         flagArrayList.add(Flag("north-korea", R.drawable.northkorea))
         flagArrayList.add(Flag("salvador", R.drawable.salvador))
+
 
         flagArrayList.add(Flag("palestine", R.drawable.falastin))
         flagArrayList.add(Flag("uzbekistan", R.drawable.uzbekistan))
@@ -350,8 +348,8 @@ class UzbekActivity : AppCompatActivity(), View.OnClickListener {
     @SuppressLint("SetTextI18n")
     private fun rightAnswer() {
         if (countryName == flagArrayList[count].name?.toUpperCase(Locale.ROOT)) {
-            Toast.makeText(this, getString(R.string.text_successful_uz), Toast.LENGTH_SHORT).show()
-            Toast.makeText(this, getString(R.string.text_got_score_uz), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.text_successful), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.text_got_score), Toast.LENGTH_SHORT).show()
             score++
             binding.winnerAnim.visibility = View.VISIBLE
             binding.winnerAnim.playAnimation()
@@ -359,7 +357,7 @@ class UzbekActivity : AppCompatActivity(), View.OnClickListener {
             handler.postDelayed({
                 binding.winnerAnim.visibility = View.GONE
                 btnJoylaCount()
-                binding.tvScore.text = getString(R.string.text_score_uz) + " : $score"
+                binding.tvScore.text = getString(R.string.text_score) + " : $score"
                 nextButton()
             }, 3000)
 
@@ -373,9 +371,8 @@ class UzbekActivity : AppCompatActivity(), View.OnClickListener {
             binding.seekBar.progress = count
         } else {
             if (countryName.length == flagArrayList[count].name?.length) {
-                Toast.makeText(this, getString(R.string.text_error_uz), Toast.LENGTH_SHORT).show()
-                Toast.makeText(this, getString(R.string.text_lost_score_uz), Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(this, getString(R.string.text_error), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.text_lost_score), Toast.LENGTH_SHORT).show()
                 vibrate()
                 failMusic()
                 linerMatn.removeAllViews()
@@ -412,7 +409,7 @@ class UzbekActivity : AppCompatActivity(), View.OnClickListener {
             score--
         } else score = 0
 
-        binding.tvScore.text = getString(R.string.text_score_uz) + ": $score"
+        binding.tvScore.text = getString(R.string.text_score) + " : $score"
     }
 
     private fun getMusic() {
